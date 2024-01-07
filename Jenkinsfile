@@ -11,12 +11,11 @@ pipeline {
     }
 
     stage('Code Quality'){
-    when {
-           allof {
+   when {
+          allof {
 
-            expression { env.GIT_BRANCH == "origin/main" }
-            expression { env.TAG_NAME != env.BRANCH_NAME }
-           }
+           expression { env.TAG_NAME != env.GIT_BRANCH }
+          }
         }
 
           steps {
@@ -27,7 +26,8 @@ pipeline {
      stage('Unit Tests'){
      when {
             allof {
-              expression { env.GIT_BRANCH == "origin/main" }
+               expression { env.TAG_NAME != env.GIT_BRANCH }
+               branch 'main'
             }
          }
               steps {
