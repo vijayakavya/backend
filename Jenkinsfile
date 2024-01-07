@@ -20,7 +20,9 @@ pipeline {
 
           steps {
             sh 'sonar-scanner -Dsonar.host.url=http://18.206.196.93:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectKey=backend -Dsonar.qualitygate.wait=true'
+            echo 'OK'
           }
+
         }
 
      stage('Unit Tests'){
